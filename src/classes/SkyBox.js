@@ -16,9 +16,10 @@ export default class SkyBox {
     }
 
 	selectSkybox() {
-		if (this.pathNumber == 0) return "bluesky"
+		if(this.pathNumber == 0) return "bluesky"
 		else return "nebula"
 	}
+
     setSize(size) {
 		this.size = size
 	}

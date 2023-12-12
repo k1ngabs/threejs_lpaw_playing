@@ -13,6 +13,7 @@ const GAME = {
 	SCORE:        0
 }
 
+//RANDOM INTENGERS GENERATION
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -40,6 +41,15 @@ let skyN = getRndInteger(0,1)
 console.log(skyN)
 GAME.skyBox = new SkyBox(skyN, 200)
 await GAME.skyBox.create(GAME.scene);
+
+//GROUND
+const geometry = new THREE.PlaneGeometry( 1, 1 );
+const material = new THREE.MeshBasicMaterial( {color: 0x5e5e5d, side: THREE.DoubleSide} );
+const plane = new THREE.Mesh( geometry, material );
+plane.rotateX(1.579)
+plane.position.set(0,-1,0)
+plane.scale.setScalar(1000)
+GAME.scene.add( plane );
 
 //CAR
 const modelsPath = 'models/nissan_gtr/'
@@ -79,7 +89,7 @@ switch (getRndInteger(0,2)) {
   case 2: var enemyModel = new Model3D('models/nissan_gtr/','GTR.mtl','GTR.obj')
 }//Tentativa 3 funciona mas só cria case 2 independente do valor gerado no switch
 console.log(enemyModel)
-debugger
+// debugger
 const enemy = await enemyModel.create(GAME.scene)
 enemy.scale.setScalar(.5)
 enemy.position.y = 0
